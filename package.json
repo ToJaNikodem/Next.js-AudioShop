@@ -12,14 +12,20 @@
   "dependencies": {
     "@clerk/nextjs": "^5.0.8",
     "@next/env": "^14.2.3",
+    "@radix-ui/react-slot": "^1.0.2",
     "@sentry/nextjs": "^7.114.0",
     "@uploadthing/react": "^6.5.3",
     "@vercel/postgres": "^0.8.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "drizzle-orm": "^0.30.10",
+    "lucide-react": "^0.378.0",
     "next": "14.2.3",
     "posthog-js": "^1.131.4",
     "react": "^18",
     "react-dom": "^18",
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss-animate": "^1.0.7",
     "uploadthing": "^6.10.3"
   },
   "devDependencies": {

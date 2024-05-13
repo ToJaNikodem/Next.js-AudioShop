@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { CSPostHogProvider } from './providers'
 import { ClerkProvider } from '@clerk/nextjs'
+import NavigationBar from '@/components/navigationBar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,7 +20,10 @@ const RootLayout = ({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          <CSPostHogProvider>{children}</CSPostHogProvider>
+          <CSPostHogProvider>
+            <NavigationBar />
+            {children}
+          </CSPostHogProvider>
         </body>
       </html>
     </ClerkProvider>
