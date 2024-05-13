@@ -1,6 +1,7 @@
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 import Link from 'next/link'
 import { buttonVariants } from './ui/button'
+import ShoppingCart from './ui/icons/shoppingCart'
 
 const NavigationBar = (): JSX.Element => {
   return (
@@ -9,9 +10,11 @@ const NavigationBar = (): JSX.Element => {
         <div className="p-3 hover:text-zinc-300">
           <Link href={'/'}>Home</Link>
         </div>
-        <div className="p-3 hover:text-zinc-300">
-          <Link href={'/'}></Link>
-        </div>
+        <SignedIn>
+          <div className="p-3 hover:text-zinc-300">
+            <Link href={'/orders'}>Orders</Link>
+          </div>
+        </SignedIn>
       </div>
       <div className="flex flex-row gap-3 text-zinc-800">
         <SignedOut>
@@ -29,8 +32,17 @@ const NavigationBar = (): JSX.Element => {
           </Link>
         </SignedOut>
         <SignedIn>
-          <div className="mt-1 scale-125">
-            <UserButton />
+          <div className="flex flex-row items-center gap-8">
+            <Link
+              href={'/cart'}
+              className="flex flex-row items-center gap-3 rounded-md border-2  border-white px-2 py-1 text-xl text-white hover:border-zinc-300 hover:text-zinc-300"
+            >
+              Cart
+              <ShoppingCart styles="scale-110" />
+            </Link>
+            <div className="mt-1 scale-125">
+              <UserButton />
+            </div>
           </div>
         </SignedIn>
       </div>
