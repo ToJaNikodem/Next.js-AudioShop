@@ -29,7 +29,7 @@ const NavigationBar = (): JSX.Element => {
           </Link>
         </SignedOut>
         <SignedIn>
-          <div className='scale-125'>
+          <div className="mt-1 scale-125">
             <UserButton />
           </div>
         </SignedIn>

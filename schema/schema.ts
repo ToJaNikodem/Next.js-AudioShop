@@ -13,6 +13,7 @@ const pgTable = pgTableCreator((name) => `drizzle-orm-demo_${name}`)
 
 export const customers = pgTable('customers', {
   id: serial('id').primaryKey(),
+  clerkId: varchar('clerk_id', { length: 64 }).notNull(),
   name: varchar('name', { length: 64 }).notNull(),
   surname: varchar('surname', { length: 64 }).notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
@@ -23,15 +24,26 @@ export const manufacturers = pgTable('manufacturers', {
   name: varchar('name', { length: 128 }).notNull(),
 })
 
-export const productColors = pgEnum('productColors', ['red', 'blue', 'yellow'])
+export const productColors = pgEnum('productColors', [
+  'red',
+  'blue',
+  'yellow',
+  'green',
+  'white',
+  'black',
+  'pink',
+])
 
 export const products = pgTable('products', {
   id: serial('id').primaryKey(),
   manufacturerId: integer('manufacturer_id')
     .references(() => manufacturers.id)
     .notNull(),
-  name: varchar('name', { length: 128 }).notNull(),
+  name: varchar('name', { length: 32 }).notNull(),
+  description: varchar('description', { length: 256 }).notNull(),
   color: productColors('product_colors').notNull(),
+  price: numeric('price', { precision: 18, scale: 2 }).notNull(),
+  image: varchar('image', { length: 64 }),
 })
 
 export const orderStatus = pgEnum('orderStatus', [
