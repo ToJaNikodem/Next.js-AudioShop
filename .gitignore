@@ -37,3 +37,6 @@ next-env.d.ts
 
 # other
 todo.TODO
+
+# Sentry Config File
+.sentryclirc

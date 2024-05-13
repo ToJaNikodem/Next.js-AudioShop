@@ -10,11 +10,16 @@
     "prettier": "npx prettier . --write"
   },
   "dependencies": {
+    "@next/env": "^14.2.3",
+    "@sentry/nextjs": "^7.114.0",
+    "@uploadthing/react": "^6.5.3",
     "@vercel/postgres": "^0.8.0",
     "drizzle-orm": "^0.30.10",
     "next": "14.2.3",
+    "posthog-js": "^1.131.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "uploadthing": "^6.10.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.2.0",

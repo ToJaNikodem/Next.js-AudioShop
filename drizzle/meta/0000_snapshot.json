@@ -98,12 +98,8 @@
           "name": "drizzle-orm-demo_orders_customer_id_drizzle-orm-demo_customers_id_fk",
           "tableFrom": "drizzle-orm-demo_orders",
           "tableTo": "drizzle-orm-demo_customers",
-          "columnsFrom": [
-            "customer_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["customer_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -140,12 +136,8 @@
           "name": "drizzle-orm-demo_orders_products_order_id_drizzle-orm-demo_orders_id_fk",
           "tableFrom": "drizzle-orm-demo_orders_products",
           "tableTo": "drizzle-orm-demo_orders",
-          "columnsFrom": [
-            "order_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["order_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -153,12 +145,8 @@
           "name": "drizzle-orm-demo_orders_products_product_id_drizzle-orm-demo_products_id_fk",
           "tableFrom": "drizzle-orm-demo_orders_products",
           "tableTo": "drizzle-orm-demo_products",
-          "columnsFrom": [
-            "product_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["product_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -202,12 +190,8 @@
           "name": "drizzle-orm-demo_products_manufacturer_id_drizzle-orm-demo_manufacturers_id_fk",
           "tableFrom": "drizzle-orm-demo_products",
           "tableTo": "drizzle-orm-demo_manufacturers",
-          "columnsFrom": [
-            "manufacturer_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["manufacturer_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -220,20 +204,12 @@
     "public.orderStatus": {
       "name": "orderStatus",
       "schema": "public",
-      "values": [
-        "pending",
-        "completed",
-        "cancelled"
-      ]
+      "values": ["pending", "completed", "cancelled"]
     },
     "public.productColors": {
       "name": "productColors",
       "schema": "public",
-      "values": [
-        "red",
-        "blue",
-        "yellow"
-      ]
+      "values": ["red", "blue", "yellow"]
     }
   },
   "schemas": {},
