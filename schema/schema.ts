@@ -9,7 +9,7 @@ import {
 } from 'drizzle-orm/pg-core'
 import { pgTableCreator } from 'drizzle-orm/pg-core'
 
-const pgTable = pgTableCreator((name) => `drizzle-orm-demo_${name}`)
+const pgTable = pgTableCreator((name) => `audio-shop_${name}`)
 
 export const customers = pgTable('customers', {
   id: serial('id').primaryKey(),
@@ -41,9 +41,9 @@ export const products = pgTable('products', {
     .notNull(),
   name: varchar('name', { length: 32 }).notNull(),
   description: varchar('description', { length: 256 }).notNull(),
-  color: productColors('product_colors').notNull(),
-  price: numeric('price', { precision: 18, scale: 2 }).notNull(),
+  price: numeric('price', { precision: 18, scale: 2 }).default('0'),
   image: varchar('image', { length: 64 }),
+  color: productColors('product_color').notNull(),
 })
 
 export const orderStatus = pgEnum('orderStatus', [

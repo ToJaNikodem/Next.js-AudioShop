@@ -1,0 +1,1 @@
+ALTER TABLE "audio-shop_products" RENAME COLUMN "product_colors" TO "product_color";
