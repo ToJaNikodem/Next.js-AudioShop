@@ -98,12 +98,8 @@
           "name": "audio-shop_orders_customer_id_audio-shop_customers_id_fk",
           "tableFrom": "audio-shop_orders",
           "tableTo": "audio-shop_customers",
-          "columnsFrom": [
-            "customer_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["customer_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -140,12 +136,8 @@
           "name": "audio-shop_orders_products_order_id_audio-shop_orders_id_fk",
           "tableFrom": "audio-shop_orders_products",
           "tableTo": "audio-shop_orders",
-          "columnsFrom": [
-            "order_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["order_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -153,12 +145,8 @@
           "name": "audio-shop_orders_products_product_id_audio-shop_products_id_fk",
           "tableFrom": "audio-shop_orders_products",
           "tableTo": "audio-shop_products",
-          "columnsFrom": [
-            "product_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["product_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -208,12 +196,8 @@
           "name": "audio-shop_products_manufacturer_id_audio-shop_manufacturers_id_fk",
           "tableFrom": "audio-shop_products",
           "tableTo": "audio-shop_manufacturers",
-          "columnsFrom": [
-            "manufacturer_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["manufacturer_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -226,24 +210,12 @@
     "public.orderStatus": {
       "name": "orderStatus",
       "schema": "public",
-      "values": [
-        "pending",
-        "completed",
-        "cancelled"
-      ]
+      "values": ["pending", "completed", "cancelled"]
     },
     "public.productColors": {
       "name": "productColors",
       "schema": "public",
-      "values": [
-        "red",
-        "blue",
-        "yellow",
-        "green",
-        "white",
-        "black",
-        "pink"
-      ]
+      "values": ["red", "blue", "yellow", "green", "white", "black", "pink"]
     }
   },
   "schemas": {},
