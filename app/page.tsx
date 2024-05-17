@@ -1,12 +1,15 @@
 import ProductsList from '@/components/productsList'
-import { getProducts } from '@/schema/queries'
 
-const HomePage = async (): Promise<JSX.Element> => {
-  const productList = await getProducts(10, 0)
-
+const HomePage = ({
+  searchParams,
+}: {
+  searchParams?: {
+    sort: string
+  }
+}): JSX.Element => {
   return (
-    <main>
-      <ProductsList productList={productList} />
+    <main className="flex justify-center">
+      <ProductsList searchParams={searchParams} />
     </main>
   )
 }

@@ -2,7 +2,7 @@
   "extends": [
     "next/core-web-vitals",
     "eslint:recommended",
-    "plugin:@typescript-eslint/strict-type-checked",
+    "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:@typescript-eslint/stylistic-type-checked",
     "prettier"
   ],
@@ -11,8 +11,5 @@
     "project": true
   },
   "plugins": ["@typescript-eslint"],
-  "root": true,
-  "rules": {
-    "@typescript-eslint/explicit-function-return-type": "error"
-  }
+  "root": true
 }

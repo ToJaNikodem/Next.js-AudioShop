@@ -1,0 +1,1 @@
+ALTER TABLE "audio-shop_products" ALTER COLUMN "image" SET DATA TYPE varchar(128);

@@ -42,7 +42,7 @@ export const products = pgTable('products', {
   name: varchar('name', { length: 32 }).notNull(),
   description: varchar('description', { length: 256 }).notNull(),
   price: numeric('price', { precision: 18, scale: 2 }).default('0'),
-  image: varchar('image', { length: 64 }),
+  image: varchar('image', { length: 128 }),
   color: productColors('product_color').notNull(),
 })
 

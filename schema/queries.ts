@@ -1,7 +1,7 @@
 import { drizzle } from 'drizzle-orm/vercel-postgres'
 import * as schema from './schema'
 import { sql } from '@vercel/postgres'
-import { asc } from 'drizzle-orm'
+import { SQL, asc, desc } from 'drizzle-orm'
 import '@/envConfig'
 
 const db = drizzle(sql, { schema })
@@ -18,12 +18,33 @@ export interface Product {
 
 export const getProducts = async (
   limit: number,
-  offset: number
+  offset: number,
+  sortBy?: string
 ): Promise<Product[]> => {
+  let orderBy: SQL<unknown>
+  switch (sortBy) {
+    case 'price-asc':
+      orderBy = asc(schema.products.price)
+      break
+    case 'price-dsc':
+      orderBy = desc(schema.products.price)
+      break
+    case 'name-az':
+      orderBy = asc(schema.products.name)
+      break
+    case 'name-za':
+      orderBy = desc(schema.products.name)
+      break
+
+    default:
+      orderBy = asc(schema.products.id)
+      break
+  }
+
   const response = await db
     .select()
     .from(schema.products)
-    .orderBy(asc(schema.products.id))
+    .orderBy(orderBy)
     .limit(limit)
     .offset(offset)
 

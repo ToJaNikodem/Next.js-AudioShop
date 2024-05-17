@@ -1,24 +1,30 @@
-'use client'
-
-import { Product } from '@/schema/queries'
+import { Product, getProducts } from '@/schema/queries'
 import ProductView from './productView'
-import { useState } from 'react'
+import SortBy from './sortBy'
 
-const ProductsList = ({
-  productList,
+const ProductsList = async ({
+  searchParams,
 }: {
-  productList: Product[]
-}): JSX.Element => {
-  const [products, setProducts] = useState<Product[]>(productList)
+  searchParams?: { sort: string }
+}): Promise<JSX.Element> => {
+  let sortBy = ''
+  if (searchParams) {
+    sortBy = searchParams.sort ?? ''
+  }
+
+  const products: Product[] = await getProducts(10, 0, sortBy)
 
   return (
-    <div className="flex flex-row">
-      <div>
-        <h4>Filters</h4>
+    <div className="mt-8 flex w-3/4 flex-row rounded-3xl bg-zinc-100 p-5">
+      <div className="w-1/5 border-r-2 border-black p-3">
+        <h4 className="text-lg font-bold">Filters</h4>
       </div>
-      <div className="flex flex-col">
-        <h2>All products</h2>
-        <div className="flex flex-col">
+      <div className="ml-6 flex w-4/5 flex-col">
+        <div className="flex flex-row justify-between ">
+          <h2 className="text-2xl font-bold">All products</h2>
+          <SortBy />
+        </div>
+        <div className="mt-5 flex flex-col gap-5">
           {products.map((product) => (
             <ProductView key={product.id} product={product} />
           ))}
