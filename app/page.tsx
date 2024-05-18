@@ -5,6 +5,7 @@ const HomePage = ({
 }: {
   searchParams?: {
     sort: string
+    page: number
   }
 }): JSX.Element => {
   return (

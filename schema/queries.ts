@@ -1,7 +1,7 @@
 import { drizzle } from 'drizzle-orm/vercel-postgres'
 import * as schema from './schema'
 import { sql } from '@vercel/postgres'
-import { SQL, asc, desc } from 'drizzle-orm'
+import { SQL, asc, count, desc } from 'drizzle-orm'
 import '@/envConfig'
 
 const db = drizzle(sql, { schema })
@@ -21,7 +21,7 @@ export const getProducts = async (
   offset: number,
   sortBy?: string
 ): Promise<Product[]> => {
-  let orderBy: SQL<unknown>
+  let orderBy: SQL
   switch (sortBy) {
     case 'price-asc':
       orderBy = asc(schema.products.price)
@@ -49,4 +49,16 @@ export const getProducts = async (
     .offset(offset)
 
   return response
+}
+
+export const getNumberOfProductsPages = async (
+  productsPerPage: number
+): Promise<number> => {
+  const response = await db
+    .select({
+      numberOfProducts: count(),
+    })
+    .from(schema.products)
+
+  return Math.ceil(response[0].numberOfProducts / productsPerPage)
 }
