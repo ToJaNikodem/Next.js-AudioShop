@@ -57,7 +57,6 @@ const ProductsListPagination = ({
           />
         </PaginationItem>
       )
-      console.log('c: ', currentPageNumber)
       if (currentPageNumber <= 3) {
         for (let i = 2; i <= 3; i++) {
           items.push(

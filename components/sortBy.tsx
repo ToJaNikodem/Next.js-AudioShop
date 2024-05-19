@@ -23,7 +23,7 @@ const SortBy = (): JSX.Element => {
   const searchParams = useSearchParams()
 
   const [open, setOpen] = useState<boolean>(false)
-  const [value, setValue] = useState<string>('')
+  const [value, setValue] = useState<string>(searchParams.get('sort') ?? '')
 
   useEffect(() => {
     if (value !== '') {

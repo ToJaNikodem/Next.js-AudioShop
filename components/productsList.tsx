@@ -1,39 +1,69 @@
-import {
-  Product,
-  getNumberOfProductsPages,
-  getProducts,
-} from '@/schema/queries'
+import { ProductFilters, getManufacturers, getProducts } from '@/schema/queries'
 import ProductView from './productView'
 import SortBy from './sortBy'
 import ProductsListPagination from './productsListPagination'
+import ProductsListFilters from './productsListFilters'
 
 const ProductsList = async ({
   searchParams,
 }: {
-  searchParams?: { sort: string; page: number }
-}): Promise<JSX.Element> => {
-  let sortBy = ''
-  let currentPageNumber = 1
-  if (searchParams) {
-    sortBy = searchParams.sort
-    currentPageNumber = searchParams.page
+  searchParams?: {
+    sort: string
+    page: number
+    manufacturer: string | string[]
+    priceTo: number
+    priceFrom: number
   }
+}): Promise<JSX.Element> => {
+  const sortBy = searchParams?.sort ?? null
+  const currentPageNumber = searchParams?.page ?? 1
 
   const PRODUCTS_PER_PAGE = 10
 
-  const products: Product[] = await getProducts(
+  const getProductsFilters = (): ProductFilters | null => {
+    let manufacturersFilters = null
+    if (searchParams?.manufacturer) {
+      if (!Array.isArray(searchParams.manufacturer)) {
+        manufacturersFilters = {
+          id: Number(searchParams.manufacturer.split('-')[0]),
+          name: searchParams.manufacturer.split('-')[1],
+        }
+        return {
+          priceFrom: searchParams.priceFrom,
+          priceTo: searchParams.priceTo,
+          manufacturers: [manufacturersFilters],
+        }
+      } else {
+        manufacturersFilters = []
+
+        for (const manufacturersParam of searchParams.manufacturer) {
+          manufacturersFilters.push({
+            id: Number(manufacturersParam.split('-')[0]),
+            name: manufacturersParam.split('-')[1],
+          })
+        }
+      }
+    }
+    return {
+      priceFrom: searchParams?.priceFrom ?? null,
+      priceTo: searchParams?.priceTo ?? null,
+      manufacturers: manufacturersFilters,
+    }
+  }
+
+  const [products, numberOfProducts] = await getProducts(
     PRODUCTS_PER_PAGE,
     PRODUCTS_PER_PAGE * currentPageNumber - PRODUCTS_PER_PAGE,
-    sortBy
+    sortBy,
+    getProductsFilters()
   )
-  const numberOfPages = await getNumberOfProductsPages(PRODUCTS_PER_PAGE)
+  const numberOfPages = Math.ceil(numberOfProducts / PRODUCTS_PER_PAGE)
+  const manufacturers = await getManufacturers()
 
   return (
     <div className="mt-8 flex w-3/4 flex-col rounded-3xl bg-zinc-100 p-5">
       <div className=" flex flex-row">
-        <div className="w-1/5 border-r-2 border-black p-3">
-          <h4 className="text-lg font-bold">Filters</h4>
-        </div>
+        <ProductsListFilters manufacturers={manufacturers} />
         <div className="ml-6 flex w-4/5 flex-col">
           <div className="flex flex-row justify-between ">
             <h2 className="text-2xl font-bold">All products</h2>

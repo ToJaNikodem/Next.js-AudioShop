@@ -6,6 +6,9 @@ const HomePage = ({
   searchParams?: {
     sort: string
     page: number
+    manufacturer: string | string[]
+    priceTo: number
+    priceFrom: number
   }
 }): JSX.Element => {
   return (
