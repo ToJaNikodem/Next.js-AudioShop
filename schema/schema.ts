@@ -4,6 +4,7 @@ import {
   numeric,
   pgEnum,
   serial,
+  text,
   timestamp,
   varchar,
 } from 'drizzle-orm/pg-core'
@@ -43,6 +44,7 @@ export const products = pgTable('products', {
   description: varchar('description', { length: 256 }).notNull(),
   price: numeric('price', { precision: 18, scale: 2 }).default('0'),
   image: varchar('image', { length: 128 }),
+  imageBlur: text('image_blur'),
   color: productColors('product_color').notNull(),
 })
 

@@ -14,6 +14,7 @@ export interface Product {
   color: string
   price: string | null
   image: string | null
+  imageBlur: string | null
 }
 
 export interface Manufacturer {

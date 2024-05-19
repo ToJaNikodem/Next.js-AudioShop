@@ -1,0 +1,1 @@
+ALTER TABLE "audio-shop_products" ADD COLUMN "image_blur" text;

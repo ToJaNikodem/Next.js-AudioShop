@@ -19,6 +19,8 @@ const ProductView = ({ product }: { product: Product }): JSX.Element => {
                 alt="Product image"
                 fill={true}
                 style={{ objectFit: 'contain' }}
+                placeholder="blur"
+                blurDataURL={product.imageBlur ?? undefined}
               />
             </div>
           ) : (
