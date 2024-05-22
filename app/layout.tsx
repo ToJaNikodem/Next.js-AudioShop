@@ -5,6 +5,7 @@ import { CSPostHogProvider } from './providers'
 import { ClerkProvider } from '@clerk/nextjs'
 import NavigationBar from '@/components/navigationBar'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { Toaster } from '@/components/ui/toaster'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,6 +25,7 @@ const RootLayout = ({
           <CSPostHogProvider>
             <NavigationBar />
             {children}
+            <Toaster />
             <SpeedInsights />
           </CSPostHogProvider>
         </body>

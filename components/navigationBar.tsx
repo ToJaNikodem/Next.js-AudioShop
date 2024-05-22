@@ -31,20 +31,20 @@ const NavigationBar = (): JSX.Element => {
             Sign Up
           </Link>
         </SignedOut>
-        <SignedIn>
-          <div className="flex flex-row items-center gap-8">
-            <Link
-              href={'/cart'}
-              className="flex flex-row items-center gap-3 rounded-md border-2  border-white px-2 py-1 text-xl text-white hover:border-zinc-300 hover:text-zinc-300"
-            >
-              Cart
-              <ShoppingCart styles="scale-110" />
-            </Link>
+        <div className="flex flex-row items-center gap-8">
+          <Link
+            href={'/cart'}
+            className="flex flex-row items-center gap-3 rounded-md border-2  border-white px-2 py-1 text-xl text-white hover:border-zinc-300 hover:text-zinc-300"
+          >
+            Cart
+            <ShoppingCart styles="scale-110" />
+          </Link>
+          <SignedIn>
             <div className="mt-1 scale-125">
               <UserButton />
             </div>
-          </div>
-        </SignedIn>
+          </SignedIn>
+        </div>
       </div>
     </nav>
   )

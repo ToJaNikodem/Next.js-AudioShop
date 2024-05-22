@@ -135,3 +135,22 @@ export const getManufacturers = async (): Promise<Manufacturer[]> => {
 
   return response
 }
+
+export const getProductsById = async (
+  productsIds: number[]
+): Promise<Product[]> => {
+  console.log('fetch')
+  let productIdsFilter
+
+  for (const productId of productsIds) {
+    productIdsFilter = productIdsFilter
+      ? or(productIdsFilter, eq(schema.products.id, productId))
+      : eq(schema.products.id, productId)
+  }
+
+  const response = await db
+    .select()
+    .from(schema.products)
+    .where(productIdsFilter)
+  return response
+}
