@@ -50,7 +50,7 @@ export const useCartStore = create<CartStore>(
                       ...product,
                       quantity:
                         product.quantity > 1
-                          ? product.quantity + 1
+                          ? product.quantity - 1
                           : product.quantity,
                     }
                   : product
@@ -58,7 +58,7 @@ export const useCartStore = create<CartStore>(
             }
           } else {
             return {
-              products: [...state.products, { productId, quantity: 1 }],
+              products: [...state.products],
             }
           }
         })

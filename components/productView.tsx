@@ -31,7 +31,7 @@ const ProductView = ({ product }: { product: Product }): JSX.Element => {
               />
             </div>
           ) : (
-            <p>Error when loading image</p>
+            <p>Error when loading product</p>
           )}
         </div>
         <div className="flex w-1/4 flex-col items-center justify-center">

@@ -3,10 +3,15 @@
 import { useEffect, useState } from 'react'
 import { useCartStore } from '../store'
 import { Product } from '@/schema/queries'
+import CartProductView from '@/components/cartProductView'
+
+export interface ProductWithQuantity extends Product {
+  quantity: number
+}
 
 const CartPage = (): JSX.Element => {
   const productsIdsInCart = useCartStore((cart) => cart.products)
-  const [products, setProducts] = useState<Product[] | null>(null)
+  const [products, setProducts] = useState<ProductWithQuantity[] | null>(null)
 
   const getProductsIds = (
     cartProducts: {
@@ -19,6 +24,14 @@ const CartPage = (): JSX.Element => {
       products.push(product.productId)
     })
     return products
+  }
+
+  const getProductQuantity = (productId: number): number => {
+    const productQuantity = productsIdsInCart.find(
+      (product) => product.productId === productId
+    )
+
+    return productQuantity ? productQuantity.quantity : 1
   }
 
   useEffect(() => {
@@ -36,25 +49,35 @@ const CartPage = (): JSX.Element => {
           }),
         })
         const jsonData: Product[] = (await response.json()) as Product[]
-        setProducts(jsonData)
+        if (Array.isArray(jsonData)) {
+          setProducts(
+            jsonData.map((product) => ({
+              ...product,
+              quantity: getProductQuantity(product.id),
+            }))
+          )
+        } else {
+          setProducts(null)
+        }
       } catch (error) {
         console.error('Error fetching data:', error)
       }
     }
 
     void fetchData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productsIdsInCart])
 
   return (
     <main className="flex justify-center">
-      <div className="mt-8 flex w-3/4 flex-col rounded-3xl bg-zinc-100 p-5">
-        <h2 className="text-2xl font-bold">Your cart</h2>
+      <div className="mt-8 flex w-2/5 flex-col rounded-3xl bg-zinc-100 p-5">
+        <h2 className="mb-2 text-2xl font-bold">Your cart</h2>
         <div>
           {products ? (
             products.length > 0 ? (
-              <div>
+              <div className="flex flex-col gap-5">
                 {products.map((product) => (
-                  <div key={product.id}>{product.name}</div>
+                  <CartProductView key={product.id} product={product} />
                 ))}
               </div>
             ) : (
